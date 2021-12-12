@@ -30,10 +30,10 @@ public class UserController {
         return userService.getAllUser();
     }
 
-    @GetMapping("/getUser/{id}")
-    public Optional<User> getUserId(@PathVariable int id) {
+    @GetMapping("/{id}")
+    public Optional<User> getUserId(@PathVariable("id") int id) {
         return userService.getUser(id);
-    }  
+    } 
 
     @GetMapping("/emailexist/{email}")
     public boolean emailExist(@PathVariable("email") String email) {
