@@ -41,14 +41,14 @@ public class UserController {
 
     @PostMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
-    public User create(@RequestBody User user) {
-        return userService.create(user);
+    public void create(@RequestBody User user) {
+        userService.create(user);
     }
 
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public User update(@RequestBody User user) {
-        return userService.update(user);
+    public void update(@RequestBody User user) {
+        userService.update(user);
     }
 
     @DeleteMapping("/{id}")
