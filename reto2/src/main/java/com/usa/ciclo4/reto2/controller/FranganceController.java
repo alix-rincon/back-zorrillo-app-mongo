@@ -1,6 +1,7 @@
 package com.usa.ciclo4.reto2.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.usa.ciclo4.reto2.model.Fragance;
 import com.usa.ciclo4.reto2.service.FranganceService;
@@ -28,18 +29,23 @@ public class FranganceController {
     @GetMapping("/all")
     public List<Fragance> getAllFragance() {
         return franganceService.getAllFragance();
+    }
+    
+    @GetMapping("/{reference}")
+    public Optional<Fragance> getFraganceId(@PathVariable("reference") String reference) {
+        return franganceService.getFragance(reference);
     }  
     
     @PostMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
-    public Fragance create(@RequestBody Fragance fragance) {
-        return franganceService.create(fragance);
+    public void create(@RequestBody Fragance fragance) {
+        franganceService.create(fragance);
     }
 
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Fragance update(@RequestBody Fragance fragance) {
-        return franganceService.update(fragance);
+    public void update(@RequestBody Fragance fragance) {
+        franganceService.update(fragance);
     }
 
     @DeleteMapping("/{reference}")

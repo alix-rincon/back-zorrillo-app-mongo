@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.usa.ciclo4.reto2.service.UserService;
 import com.usa.ciclo4.reto2.model.User;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/user")
@@ -28,6 +29,11 @@ public class UserController {
     public List<User> getAllUser() {
         return userService.getAllUser();
     }
+
+    @GetMapping("/{id}")
+    public Optional<User> getUserId(@PathVariable("id") int id) {
+        return userService.getUser(id);
+    }  
 
     @GetMapping("/emailexist/{email}")
     public boolean emailExist(@PathVariable("email") String email) {
