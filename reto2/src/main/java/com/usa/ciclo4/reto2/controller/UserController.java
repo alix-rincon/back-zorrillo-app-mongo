@@ -17,6 +17,9 @@ import com.usa.ciclo4.reto2.model.User;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @author: Alix Rincón
+ */
 @RestController
 @RequestMapping("/api/user")
 @CrossOrigin("*")
@@ -25,41 +28,74 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * 
+     * @return List
+     */
     @GetMapping("/all")
     public List<User> getAllUser() {
         return userService.getAllUser();
     }
 
+    /**
+     * 
+     * @param id
+     * @return Optional
+     */
     @GetMapping("/{id}")
-    public Optional<User> getUserId(@PathVariable("id") int id) {
-        return userService.getUser(id);
+    public Optional<User> getUserId(@PathVariable("id") int userId) {
+        return userService.getUser(userId);
     } 
 
+    /**
+     * 
+     * @param email
+     * @return boolean
+     */
     @GetMapping("/emailexist/{email}")
     public boolean emailExist(@PathVariable("email") String email) {
         return userService.emailExist(email);
     }
 
+    /**
+     * 
+     * @param email
+     * @param password
+     * @return User
+     */
     @GetMapping("/{email}/{password}")
     public User authenticaUser(@PathVariable("email") String email, @PathVariable("password") String password) {
         return userService.authenticateUser(email, password);
     }
 
+    /**
+     * 
+     * @param user
+     */
     @PostMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(@RequestBody User user) {
-        userService.create(user);
+    public void create(@RequestBody User userObject) {
+        userService.create(userObject);
     }
 
+    /**
+     * 
+     * @param user
+     */
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public void update(@RequestBody User user) {
-        userService.update(user);
+    public void update(@RequestBody User userObject) {
+        userService.update(userObject);
     }
 
+    /**
+     * 
+     * @param id
+     * @return
+     */
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int id) {
-        return userService.delete(id);
+    public boolean delete(@PathVariable("id") int userId) {
+        return userService.delete(userId);
     }
 }
