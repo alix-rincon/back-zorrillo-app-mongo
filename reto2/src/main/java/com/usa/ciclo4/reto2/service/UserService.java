@@ -15,7 +15,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public Optional<User> getUser(int id){
+    public Optional<User> getUser(int id) {
         return userRepository.getUser(id);
     }
 
@@ -37,19 +37,24 @@ public class UserService {
     }
 
     public User create(User user) {
+
+        Optional<User> userIdMax = userRepository.lastUserId();
         if (user.getId() == null) {
-            return user;
-        } else {
-            Optional<User> userId = userRepository.getUser(user.getId());
-            if (userId.isEmpty()) {
-                if (emailExist(user.getEmail()) == false) {
-                    return userRepository.create(user);
-                } else {
-                    return user;
-                }
+            if (userIdMax.isEmpty()) {
+                user.setId(1);
+            } else {
+                user.setId(userIdMax.get().getId() + 1);
+            }
+        }
+        Optional<User> userId = userRepository.getUser(user.getId());
+        if (userId.isEmpty()) {
+            if (emailExist(user.getEmail()) == false) {
+                return userRepository.create(user);
             } else {
                 return user;
             }
+        } else {
+            return user;
         }
     }
 
@@ -88,8 +93,8 @@ public class UserService {
         }
     }
 
-    public boolean delete (int userId){
-        Boolean aBoolean = getUser(userId).map(user ->{
+    public boolean delete(int userId) {
+        Boolean aBoolean = getUser(userId).map(user -> {
             userRepository.delete(user);
             return true;
         }).orElse(false);
