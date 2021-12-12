@@ -25,6 +25,9 @@ import java.util.Optional;
 @CrossOrigin("*")
 public class UserController {
 
+    /**
+     * UserService
+     */
     @Autowired
     private UserService userService;
 
