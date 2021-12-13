@@ -1,6 +1,7 @@
 package com.usa.ciclo4.reto2.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.usa.ciclo4.reto2.model.Order;
 import com.usa.ciclo4.reto2.service.OrderService;
@@ -31,6 +32,11 @@ public class OrderController {
     public List<Order> getAll(String param) {
         return orderService.getAll();
     }
+
+    @GetMapping("/{id}")
+    public Optional<Order> getOrderId(@PathVariable("id") int orderId) {
+        return orderService.getOrder(orderId);
+    } 
     
     @PostMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
