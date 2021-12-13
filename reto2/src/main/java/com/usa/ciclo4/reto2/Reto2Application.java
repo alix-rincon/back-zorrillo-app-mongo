@@ -1,6 +1,7 @@
 package com.usa.ciclo4.reto2;
 
 import com.usa.ciclo4.reto2.interfaces.FraganceCrudRepository;
+import com.usa.ciclo4.reto2.interfaces.OrderCrudRepository;
 import com.usa.ciclo4.reto2.interfaces.UserCrudRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ public class Reto2Application implements CommandLineRunner {
 	private UserCrudRepository userRepository;
 	@Autowired
 	private FraganceCrudRepository fraganceRepository;
+	@Autowired
+	private OrderCrudRepository orderCrudRepository;
 	public static void main(String[] args) {
 		SpringApplication.run(Reto2Application.class, args);
 	}
@@ -23,6 +26,7 @@ public class Reto2Application implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		userRepository.deleteAll();
 		fraganceRepository.deleteAll();
+		orderCrudRepository.deleteAll();
 	}
 
 }
