@@ -64,6 +64,9 @@ public class FranganceService {
                 if (fragance.getPhotography() != null) {
                     fraganceRecord.get().setPhotography(fragance.getPhotography());
                 }
+                
+                fraganceRecord.get().setAvailability(fragance.isAvailability());
+                
 
                 fraganceRepository.update(fraganceRecord.get());
                 return fraganceRecord.get();

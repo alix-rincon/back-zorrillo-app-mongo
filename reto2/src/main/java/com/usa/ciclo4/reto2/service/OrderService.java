@@ -41,7 +41,7 @@ public class OrderService {
     }
 
     public Order update(Order order) {
-        if (order.getId() == null) {
+        if (order.getId() != null) {
             Optional<Order> orderData = orderRepository.getOrder(order.getId());
             if (!orderData.isEmpty()) {
                 if (order.getStatus() != null) {
