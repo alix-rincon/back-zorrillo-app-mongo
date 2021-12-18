@@ -100,4 +100,8 @@ public class UserService {
         }).orElse(false);
         return aBoolean;
     }
+
+    public List<User> birthtDayList(String monthBirthtDay) {
+        return userRepository.birthtDayList(monthBirthtDay);
+    }
 }

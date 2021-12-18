@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.http.HttpStatus;
 
-
 @RestController
 @RequestMapping("/api/order")
 @CrossOrigin("*")
@@ -28,7 +27,7 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @GetMapping(value="/all")
+    @GetMapping(value = "/all")
     public List<Order> getAll(String param) {
         return orderService.getAll();
     }
@@ -36,8 +35,8 @@ public class OrderController {
     @GetMapping("/{id}")
     public Optional<Order> getOrderId(@PathVariable("id") int orderId) {
         return orderService.getOrder(orderId);
-    } 
-    
+    }
+
     @PostMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody Order order) {
@@ -49,7 +48,7 @@ public class OrderController {
     public void update(@RequestBody Order order) {
         orderService.update(order);
     }
-    
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable("id") int id) {
@@ -57,9 +56,23 @@ public class OrderController {
     }
 
     @GetMapping("/zona/{zona}")
-    public List<Order> findByZone(@PathVariable("zona") String zona){
+    public List<Order> findByZone(@PathVariable("zona") String zona) {
         return orderService.findByZone(zona);
     }
 
-    
+    @GetMapping("/salesman/{id}")
+    public List<Order> ordersSalesManByID(@PathVariable("id") int id) {
+        return orderService.ordersSalesManByID(id);
+    }
+
+    @GetMapping("/date/{date}/{id}")
+    public List<Order> ordersSalesManByDate(@PathVariable("date") String date, @PathVariable("id") int id) {
+        return orderService.ordersSalesManByDate(date, id);
+    }
+
+    @GetMapping("/state/{state}/{id}")
+    public List<Order> ordersSalesManByState(@PathVariable("state") String date, @PathVariable("id") int id) {
+        return orderService.ordersSalesManByState(date, id);
+    }
+
 }

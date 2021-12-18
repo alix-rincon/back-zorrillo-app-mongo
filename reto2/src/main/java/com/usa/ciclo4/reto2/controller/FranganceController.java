@@ -24,18 +24,18 @@ import org.springframework.web.bind.annotation.RestController;
 public class FranganceController {
 
     @Autowired
-    private FranganceService franganceService;   
-   
+    private FranganceService franganceService;
+
     @GetMapping("/all")
     public List<Fragance> getAllFragance() {
         return franganceService.getAllFragance();
     }
-    
+
     @GetMapping("/{reference}")
     public Optional<Fragance> getFraganceId(@PathVariable("reference") String reference) {
         return franganceService.getFragance(reference);
-    }  
-    
+    }
+
     @PostMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody Fragance fragance) {
@@ -52,5 +52,15 @@ public class FranganceController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable("reference") String reference) {
         return franganceService.delete(reference);
+    }
+
+    @GetMapping("/price/{price}")
+    public List<Fragance> fraganceByPrice(@PathVariable("price") double price) {
+        return franganceService.fraganceByPrice(price);
+    }
+
+    @GetMapping("/description/{description}")
+    public List<Fragance> findByDescriptionLike(@PathVariable("description") String description) {
+        return franganceService.findByDescriptionLike(description);
     }
 }

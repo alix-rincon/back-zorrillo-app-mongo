@@ -48,7 +48,7 @@ public class UserController {
     @GetMapping("/{id}")
     public Optional<User> getUserId(@PathVariable("id") int userId) {
         return userService.getUser(userId);
-    } 
+    }
 
     /**
      * 
@@ -100,5 +100,10 @@ public class UserController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable("id") int userId) {
         return userService.delete(userId);
+    }
+
+    @GetMapping("/birthday/{month}")
+    public List<User> birthtDayList(@PathVariable("month") String monthBirthtDay) {
+        return userService.birthtDayList(monthBirthtDay);
     }
 }

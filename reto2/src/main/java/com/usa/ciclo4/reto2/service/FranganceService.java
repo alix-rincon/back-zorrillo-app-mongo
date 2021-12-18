@@ -85,4 +85,14 @@ public class FranganceService {
         }).orElse(false);
         return aBoolean;
     }
+
+    //Reto 5
+    public List<Fragance> fraganceByPrice(double price) {
+        return fraganceRepository.fraganceByPrice(price);
+    }
+
+    //Reto 5
+    public List<Fragance> findByDescriptionLike(String description) {
+        return fraganceRepository.findByDescriptionLike(description);
+    }
 }
